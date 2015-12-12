@@ -13,6 +13,8 @@ public class IAInLine : MonoBehaviour {
     Vector3 dir;
     private float curPos;
     private bool bReturnMove;
+    private float leftDistance;
+    private float rightDistance;
 
     private void Move()
     {
@@ -31,8 +33,9 @@ public class IAInLine : MonoBehaviour {
             dir.y = Time.deltaTime * speed;
         }
 
-        if (curPos < distance)
+        if (curPos < rightDistance)
         {
+            //Debug.Log("curPos distance : "+ curPos + " " + distance);
             //Debug.Log("Aller pos: "+ dir.x);
             transform.Translate(dir.x, dir.y, 0);
         }
@@ -60,9 +63,8 @@ public class IAInLine : MonoBehaviour {
             dir.y = -Time.deltaTime * speed;
         }
 
-        if (curPos > -distance)
+        if (curPos > leftDistance)
         {
-            //Debug.Log("Aller pos: " + dir.x);
            // dir.x = -Time.deltaTime * speed;
             transform.Translate(dir.x, dir.y, 0);
         }
@@ -74,11 +76,22 @@ public class IAInLine : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         dir = new Vector3(0, 0, 0);
         bReturnMove = false;
-        
-    }
+
+        if (!bSwitchXToYAxis)
+        {
+            leftDistance =  transform.localPosition.x - distance;
+            rightDistance = distance + transform.localPosition.x;
+        }
+        else
+        {
+            leftDistance = transform.localPosition.y - distance;
+            rightDistance = transform.localPosition.y + distance;
+        }
+
+            }
 	
 	// Update is called once per frame
 	void Update () {
@@ -91,4 +104,18 @@ public class IAInLine : MonoBehaviour {
             ReturnMove();
         }
     }
+    /*
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Vector3 position = transform.position;
+
+        Vector3 left = -transform.right * 2*distance;
+        Vector3 right = transform.right * 2*distance;
+
+        Gizmos.DrawLine(position, position + right);
+        Gizmos.DrawLine(position, position + left);
+
+    }*/
 }

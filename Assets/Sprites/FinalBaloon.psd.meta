@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 093ca27527aff364aa6efb8bf63e08d2
-timeCreated: 1449939938
-=======
-guid: 2ff947157a17e7042843f70a77d13fbc
+guid: ef034ed67b9f9154ca52d2c03a654646
 timeCreated: 1449937165
->>>>>>> add projectile generator
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

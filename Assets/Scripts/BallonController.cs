@@ -1,32 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor.Animations;
 
 public class BallonController : MonoBehaviour {
 
-    private bool isMoving, canMove, isSlow;
+    private bool isMoving, canMove, isSlow, isDead;
     [SerializeField]
     private float speed, slowMod, rotspeed, moveCd, growSpeed;
     private float elapsedTime, moveOnCd;
-
+    private Animator anim;
 	// Use this for initialization
 	void Start () {
         isMoving = false;
         canMove = true;
         isSlow = false;
+        isDead = false;
         elapsedTime = 0;
+        anim = GetComponent<Animator>();
 	}
 
     private void init()
     {
+        GetComponent<TrailRenderer>().enabled = true;
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.position = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        moveOnCd = 0;
+        isDead = false;
+        anim.Play("Idle");
     }
 
-	
+    void Update()
+    {
+        
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
 
@@ -44,6 +55,11 @@ public class BallonController : MonoBehaviour {
         if (canMove && Input.GetMouseButton(1))
             transform.Rotate(Vector3.forward, -rotspeed);
 
+        if (isDead && Input.GetMouseButton(0))
+        {
+            init();
+        }
+
         if (canMove)
         {
             Grow();
@@ -52,13 +68,14 @@ public class BallonController : MonoBehaviour {
 
         
 
-        if (!canMove)
+        if (!isDead && !canMove)
         {
             if (moveOnCd < moveCd)
                 moveOnCd += Time.deltaTime;
             else
                 canMove = true;
         }
+        
 	}
 
     private void Move()
@@ -76,9 +93,10 @@ public class BallonController : MonoBehaviour {
     {
         if (c.gameObject.tag == "Kill")
         {
-            init();
-            canMove = false;
-            moveOnCd = 0;
+           
+
+            Die();
+            
         }
         if (c.gameObject.tag == "Slow")
         {
@@ -98,6 +116,13 @@ public class BallonController : MonoBehaviour {
         }
     }
 
+    private void Die()
+    {
+        isDead = true;
+        anim.SetTrigger("Die");
+        canMove = false;
+        GetComponent<TrailRenderer>().enabled = false;
+    }
 
     #region Ajout-luc
 
@@ -107,4 +132,5 @@ public class BallonController : MonoBehaviour {
     }
 
     #endregion
+
 }

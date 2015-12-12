@@ -7,8 +7,9 @@ public class Obstacles : MonoBehaviour {
     [SerializeField] float m_MoveY = 0.001f;
     [SerializeField] float lifeTime;
     Transform myTransform;
+    [SerializeField] private float m_ScaleAmountToModify = 0.20f; //between 0 and 1 (not 1)
 
-    bool isProjectile = false;
+    [SerializeField] bool isProjectile = false;
     float deltaTime;
 
    
@@ -35,7 +36,11 @@ public class Obstacles : MonoBehaviour {
         }
 	}
 
+    public float GetScaleAmountToModify()
+    {
+        return m_ScaleAmountToModify;
 
+    }
 
     public float RotationSpeed
     {
@@ -101,4 +106,5 @@ public class Obstacles : MonoBehaviour {
             isProjectile = value;
         }
     }
+    
 }

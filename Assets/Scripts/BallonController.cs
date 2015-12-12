@@ -84,6 +84,12 @@ public class BallonController : MonoBehaviour {
         {
             isSlow = true;
         }
+        if (c.gameObject.tag == "ModifyScale")
+        {
+            Debug.Log("hey");
+            ModifyScale(c.gameObject.GetComponent<Obstacles>().GetScaleAmountToModify());
+            Destroy(c.gameObject);
+        }
     }
     void OnTriggerExit2D(Collider2D c)
     {
@@ -93,4 +99,13 @@ public class BallonController : MonoBehaviour {
         }
     }
 
+
+    #region Ajout-luc
+
+    public void ModifyScale(float amount)
+    {
+        transform.localScale = new Vector3(transform.localScale.x + amount, transform.localScale.y + amount, 0);
+    }
+
+    #endregion
 }

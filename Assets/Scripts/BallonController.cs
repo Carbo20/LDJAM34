@@ -86,7 +86,6 @@ public class BallonController : MonoBehaviour {
         }
         if (c.gameObject.tag == "ModifyScale")
         {
-            Debug.Log("hey");
             ModifyScale(c.gameObject.GetComponent<Obstacles>().GetScaleAmountToModify());
             Destroy(c.gameObject);
         }

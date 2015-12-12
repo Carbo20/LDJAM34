@@ -39,7 +39,11 @@ public class Obstacles : MonoBehaviour {
     public float GetScaleAmountToModify()
     {
         return m_ScaleAmountToModify;
+    }
 
+    public void SetScaleAmountToModify(float newScaleAmountToModify)
+    {
+        m_ScaleAmountToModify = newScaleAmountToModify;
     }
 
     public float RotationSpeed

@@ -20,7 +20,7 @@ public class BallonController : MonoBehaviour {
     {
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
-        transform.localScale = new Vector3(.3f, .3f, 0);
+        transform.localScale = new Vector3(.7f, .7f, 0);
         transform.position = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -45));
     }
@@ -67,8 +67,8 @@ public class BallonController : MonoBehaviour {
 
     private void Grow()
     {
-        transform.localScale = new Vector3(transform.localScale.x + growSpeed * Time.deltaTime, transform.localScale.y + growSpeed * Time.deltaTime, 0); 
-
+        transform.localScale = new Vector3(transform.localScale.x + growSpeed * Time.deltaTime, transform.localScale.y + growSpeed * Time.deltaTime, 0);
+        GetComponent<TrailRenderer>().time += Time.deltaTime * 0.1f;
     }
 
     void OnTriggerEnter2D(Collider2D c)

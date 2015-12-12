@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BallonController : MonoBehaviour {
 
@@ -20,9 +21,9 @@ public class BallonController : MonoBehaviour {
     {
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
-        transform.localScale = new Vector3(.7f, .7f, 0);
+        transform.localScale = new Vector3(.5f, .5f, 0);
         transform.position = new Vector3(0, 0, 0);
-        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -45));
+        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
     }
 
 	
@@ -62,13 +63,13 @@ public class BallonController : MonoBehaviour {
 
     private void Move()
     {
-        transform.Translate(isSlow ? (speed - 2) * Time.deltaTime : speed * Time.deltaTime, isSlow ? (speed - 2) * Time.deltaTime : speed * Time.deltaTime, 0);
+        transform.Translate(isSlow ? (speed - 2) * Time.deltaTime : speed * Time.deltaTime, 0, 0);
     }
 
     private void Grow()
     {
         transform.localScale = new Vector3(transform.localScale.x + growSpeed * Time.deltaTime, transform.localScale.y + growSpeed * Time.deltaTime, 0);
-        GetComponent<TrailRenderer>().time += Time.deltaTime * 0.1f;
+        GetComponent<TrailRenderer>().time += Time.deltaTime * 0.25f;
     }
 
     void OnTriggerEnter2D(Collider2D c)

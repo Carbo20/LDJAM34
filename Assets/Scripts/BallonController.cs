@@ -5,7 +5,7 @@ public class BallonController : MonoBehaviour {
 
     private bool isMoving, canMove, isSlow;
     [SerializeField]
-    private float speed, slowMod, rotspeed, moveCd;
+    private float speed, slowMod, rotspeed, moveCd, growSpeed;
     private float elapsedTime, moveOnCd;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class BallonController : MonoBehaviour {
     {
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
-        transform.localScale = new Vector3(7, 7, 0);
+        transform.localScale = new Vector3(.3f, .3f, 0);
         transform.position = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -45));
     }
@@ -67,8 +67,8 @@ public class BallonController : MonoBehaviour {
 
     private void Grow()
     {
-        transform.localScale = new Vector3(transform.localScale.x + 0.5f*Time.deltaTime, transform.localScale.y + 0.5f*Time.deltaTime, 0);
-        GetComponent<TrailRenderer>().time += Time.deltaTime/30;
+        transform.localScale = new Vector3(transform.localScale.x + growSpeed * Time.deltaTime, transform.localScale.y + growSpeed * Time.deltaTime, 0); 
+
     }
 
     void OnTriggerEnter2D(Collider2D c)

@@ -26,7 +26,7 @@ public class Obstacles : MonoBehaviour {
         if (IsProjectile)
         {
 
-            Debug.Log("COUCOU");
+
             deltaTime += Time.deltaTime;
             if(deltaTime > LifeTime)
             {

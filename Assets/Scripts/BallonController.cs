@@ -146,6 +146,7 @@ public class BallonController : MonoBehaviour {
         {
             if (GameManager.instance.niveau != Niveaux.HUB_CENTRAL)
             {
+                Debug.Log("vitesse hub :" + speed);
                 GameManager.instance.niveau = Niveaux.HUB_CENTRAL;
                 speed = oldSpeed; // retour à une vitesse normale
                 oldGrowSpeed = growSpeed;

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     private int numberOfBalloonSaved = 0;
     [SerializeField] private int maxNumberOfChildBalloon = 5;
     public float waterSpeedModification = 2f;
+    private bool isPause;
 
     static public bool isActive
     {
@@ -46,13 +47,20 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+         isPause = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(2))
+        {
+            isPause = !isPause;
+         if(isPause)
+                Time.timeScale = 0;
+            else
+                Time.timeScale = 1;
+        }
+    }
 
     public void OneMoreChildBalloonSaved()
     {

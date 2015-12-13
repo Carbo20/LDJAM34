@@ -158,6 +158,7 @@ public class BallonController : MonoBehaviour {
                 {
                     littleBalloons[i].Validate();
                 }
+                ResetAllDisabledGameObjects();
             }
         }
         else if (c.gameObject.tag == "NiveauEau")

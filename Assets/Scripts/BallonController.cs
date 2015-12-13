@@ -80,12 +80,12 @@ public class BallonController : MonoBehaviour {
         else
             isMoving = false;*/
 
-        if (canMove && Input.GetMouseButton(0))
+        if (canMove && (Input.GetMouseButton(0) || Input.GetKey(KeyCode.LeftArrow)))
             transform.Rotate(Vector3.forward, rotspeed);
-        if (canMove && Input.GetMouseButton(1))
+        if (canMove && (Input.GetMouseButton(1)|| Input.GetKey(KeyCode.RightArrow)))
             transform.Rotate(Vector3.forward, -rotspeed);
 
-        if (isDead && !canMove && Input.GetMouseButton(0) && Input.GetMouseButton(1))
+        if (isDead && !canMove && ((Input.GetMouseButton(0) && Input.GetMouseButton(1)) || (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))))
         {
             init();
         }

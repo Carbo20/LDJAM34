@@ -152,6 +152,12 @@ public class BallonController : MonoBehaviour {
                 growSpeed = 0f;
                 transform.localScale = new Vector3(0.5f, 0.5f, 0);
                 Camera.main.backgroundColor = hexToColor("96D6EC05");
+
+                LittleBalloonScript[] littleBalloons = GetComponentsInChildren<LittleBalloonScript>();
+                for (int i = 0; i < littleBalloons.Length; i++)
+                {
+                    littleBalloons[i].Validate();
+                }
             }
         }
         else if (c.gameObject.tag == "NiveauEau")

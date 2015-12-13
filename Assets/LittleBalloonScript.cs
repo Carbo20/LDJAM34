@@ -39,4 +39,10 @@ public class LittleBalloonScript : MonoBehaviour {
             Backdoor.SetActive(true);
         }
 	}
+
+    public void Validate()
+    {
+        Destroy(Backdoor);
+        Destroy(gameObject);
+    }
 }

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< 5aed0cb29b4c694c3dc4a6dfd126508c7d64eec0
 guid: 5c80176a52c21154da5d9ed568742f60
 timeCreated: 1449977978
+=======
+guid: f9fb0a808ed91d24b81e1faf9b35c221
+timeCreated: 1449974152
+>>>>>>> amelio water & bullet lvl
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

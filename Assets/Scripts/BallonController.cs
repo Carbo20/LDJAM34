@@ -46,10 +46,7 @@ public class BallonController : MonoBehaviour {
         moveOnCd = 0;
         isDead = false;
         anim.Play("Idle");
-    }
 
-    void Update()
-    {
         GameManager.instance.niveau = Niveaux.HUB_CENTRAL; // Si le respawn ne bouge pas du hub central
         Camera.main.backgroundColor = hexToColor("96D6EC05");
         if (growSpeed != 0)
@@ -57,6 +54,11 @@ public class BallonController : MonoBehaviour {
             oldGrowSpeed = growSpeed;
             growSpeed = 0f;
         }
+    }
+
+    void Update()
+    {
+        
     }
 
 	// Update is called once per frame
@@ -140,6 +142,7 @@ public class BallonController : MonoBehaviour {
                 speed = oldSpeed; // retour à une vitesse normale
                 oldGrowSpeed = growSpeed;
                 growSpeed = 0f;
+                transform.localScale = new Vector3(0.5f, 0.5f, 0);
                 Camera.main.backgroundColor = hexToColor("96D6EC05");
             }
         }

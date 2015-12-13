@@ -45,7 +45,6 @@ public class BallonController : MonoBehaviour {
 
         moveOnCd = 0;
         isDead = false;
-        anim.Play("Idle");
 
         GameManager.instance.niveau = Niveaux.HUB_CENTRAL; // Si le respawn ne bouge pas du hub central
         Camera.main.backgroundColor = hexToColor("96D6EC05");
@@ -79,6 +78,7 @@ public class BallonController : MonoBehaviour {
         if (isDead && Input.GetMouseButton(0))
         {
             init();
+            anim.SetTrigger("Respawn");
         }
 
         if (canMove)
@@ -120,10 +120,7 @@ public class BallonController : MonoBehaviour {
     {
         if (c.gameObject.tag == "Kill")
         {
-           
-
-            Die();
-            
+            Die();            
         }
         else if (c.gameObject.tag == "Slow")
         {

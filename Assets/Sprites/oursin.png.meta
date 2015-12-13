@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< 5aed0cb29b4c694c3dc4a6dfd126508c7d64eec0
 guid: ca620830fb62a4648967bdfca269505b
-timeCreated: 1449977979
-=======
-guid: 4f8b24172b1ac8f4b9ac44ac50e094da
-timeCreated: 1449974151
->>>>>>> amelio water & bullet lvl
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -35,7 +28,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0

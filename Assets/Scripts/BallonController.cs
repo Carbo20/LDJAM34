@@ -45,7 +45,7 @@ public class BallonController : MonoBehaviour {
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.position = new Vector3(0, 0, 0);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-
+        anim.SetTrigger("Respawn");
         moveOnCd = 0;
         isDead = false;
 
@@ -79,10 +79,9 @@ public class BallonController : MonoBehaviour {
         if (canMove && Input.GetMouseButton(1))
             transform.Rotate(Vector3.forward, -rotspeed);
 
-        if (isDead && Input.GetMouseButton(0))
+        if (isDead && !canMove && Input.GetMouseButton(0) && Input.GetMouseButton(1))
         {
             init();
-            anim.SetTrigger("Respawn");
         }
 
         if (canMove)
@@ -104,8 +103,9 @@ public class BallonController : MonoBehaviour {
                 GetComponent<CircleCollider2D>().enabled = true;
             }
         }
-        
 
+        if (canMove && !isDead)
+            anim.SetTrigger("Respawn");
 
 	}
 
@@ -229,7 +229,10 @@ public class BallonController : MonoBehaviour {
     #region Ajout-luc
     public void ModifyScale(float amount)
     {
-        transform.localScale = new Vector3(transform.localScale.x + amount, transform.localScale.y + amount, 0);
+        if (transform.localScale.x + amount >= 0.2)
+            transform.localScale = new Vector3(transform.localScale.x + amount, transform.localScale.y + amount, 0);
+        else
+            transform.localScale = new Vector3(0.2f, 0.2f, 0);
     }
 
      private static Color hexToColor(string hex)

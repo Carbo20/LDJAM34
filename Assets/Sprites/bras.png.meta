@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: fb1dd4cc5c4507c40bb57778a05f9b43
-timeCreated: 1449949016
-=======
-guid: e48516ba09da1884ebee35e0e0de3d6c
-timeCreated: 1449961577
->>>>>>> oiseaux
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -35,7 +28,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0

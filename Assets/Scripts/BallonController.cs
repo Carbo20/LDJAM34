@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEditor.Animations;
+using System.Collections.Generic;
 
 public class BallonController : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class BallonController : MonoBehaviour {
     private bool babyBalloon; // true if a baby balloon (and not baboon, that would be akward) is following us
     private float oldSpeed = 0f;
     private float oldGrowSpeed = 0f;
+    private List<GameObject> enableList;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class BallonController : MonoBehaviour {
         anim = GetComponent<Animator>();
         babyBalloon = false;
         elapsedTime = 0;
+        enableList = new List<GameObject>();
 
         GameManager.instance.niveau = Niveaux.HUB_CENTRAL; // Si le respawn ne bouge pas du hub central
         Camera.main.backgroundColor = hexToColor("96D6EC05");
@@ -53,6 +56,7 @@ public class BallonController : MonoBehaviour {
             oldGrowSpeed = growSpeed;
             growSpeed = 0f;
         }
+        ResetAllDisabledGameObjects();
     }
 
     void Update()
@@ -129,7 +133,8 @@ public class BallonController : MonoBehaviour {
         else if (c.gameObject.tag == "ModifyScale")
         {
             ModifyScale(c.gameObject.GetComponent<Obstacles>().GetScaleAmountToModify());
-            Destroy(c.gameObject);
+            c.gameObject.SetActive(false);
+            enableList.Add(c.gameObject);
         }
         else if (c.gameObject.tag == "HubCentral")
         {
@@ -240,6 +245,14 @@ public class BallonController : MonoBehaviour {
              a = byte.Parse(hex.Substring(4,2), System.Globalization.NumberStyles.HexNumber);
          }
          return new Color32(r,g,b,a);
+     }
+
+     private void ResetAllDisabledGameObjects()
+     {
+         foreach (GameObject GO in enableList)
+         {
+             GO.SetActive(true);
+         }
      }
     #endregion
 }

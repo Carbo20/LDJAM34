@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 5f77d464ed7af8845b186fcff046009b
-timeCreated: 1449949169
-=======
-guid: ff5d578f5930f7649bb5a971f38b3b72
-timeCreated: 1449961579
->>>>>>> oiseaux
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -35,11 +28,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-<<<<<<< HEAD
     aniso: 16
-=======
-    aniso: -1
->>>>>>> oiseaux
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -52,11 +41,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< HEAD
-  spriteBorder: {x: 501, y: 562, z: 611, w: 545}
-=======
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
->>>>>>> oiseaux
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEditor.Animations;
 using System.Collections.Generic;
 
 public class BallonController : MonoBehaviour {
@@ -27,7 +26,7 @@ public class BallonController : MonoBehaviour {
         babyBalloon = false;
         elapsedTime = 0;
         enableList = new List<GameObject>();
-
+        init();
         GameManager.instance.niveau = Niveaux.HUB_CENTRAL; // Si le respawn ne bouge pas du hub central
         Camera.main.backgroundColor = hexToColor("96D6EC05");
         if (growSpeed != 0)

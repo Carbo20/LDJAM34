@@ -13,7 +13,7 @@ public class BallonController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         isMoving = false;
-        canMove = true;
+        canMove = false;
         isSlow = false;
         isDead = false;
         elapsedTime = 0;
@@ -71,11 +71,19 @@ public class BallonController : MonoBehaviour {
         if (!isDead && !canMove)
         {
             if (moveOnCd < moveCd)
+            {
                 moveOnCd += Time.deltaTime;
+                GetComponent<CircleCollider2D>().enabled = false;
+            }
             else
+            {
                 canMove = true;
+                GetComponent<CircleCollider2D>().enabled = true;
+            }
         }
         
+
+
 	}
 
     private void Move()

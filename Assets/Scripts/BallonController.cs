@@ -20,6 +20,8 @@ public class BallonController : MonoBehaviour {
     private float oldSpeed = 0f;
     private float oldGrowSpeed = 0f;
     private List<GameObject> enableList;
+    private float speedBonus = 0f;
+    private float speedBonusDuration = 0f;
 
 	// Use this for initialization
 	void Start () {
@@ -67,7 +69,10 @@ public class BallonController : MonoBehaviour {
 
     void Update()
     {
-        
+        if (speedBonusDuration > 0)
+            speedBonusDuration -= Time.deltaTime;
+        else
+            speedBonus = 0f;
     }
 
 	// Update is called once per frame
@@ -117,7 +122,7 @@ public class BallonController : MonoBehaviour {
 
     private void Move()
     {
-        transform.Translate(isSlow ? (speed - 2) * Time.deltaTime : speed * Time.deltaTime, 0, 0);
+        transform.Translate(isSlow ? ((speed + speedBonus) - 2) * Time.deltaTime : (speed + speedBonus) * Time.deltaTime, 0, 0);
     }
 
     private void Grow()
@@ -142,6 +147,13 @@ public class BallonController : MonoBehaviour {
             c.gameObject.SetActive(false);
             enableList.Add(c.gameObject);
         }
+        else if (c.gameObject.tag == "ModifySpeed")
+        {
+            speedBonus = c.gameObject.GetComponent<Obstacles>().m_SpeedBoost;
+            speedBonusDuration = c.gameObject.GetComponent<Obstacles>().m_SpeedBoostDuration;
+            c.gameObject.SetActive(false);
+            enableList.Add(c.gameObject);
+        } 
         else if (c.gameObject.tag == "HubCentral")
         {
             if (GameManager.instance.niveau != Niveaux.HUB_CENTRAL)
@@ -222,7 +234,8 @@ public class BallonController : MonoBehaviour {
                 growSpeed = oldGrowSpeed;
                 Camera.main.backgroundColor = hexToColor("212E5105");/// 16065605 212E5105
             }
-        }        
+        }
+        
     }
     void OnTriggerExit2D(Collider2D c)
     {

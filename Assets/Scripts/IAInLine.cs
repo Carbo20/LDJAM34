@@ -15,6 +15,7 @@ public class IAInLine : MonoBehaviour {
     private bool bReturnMove;
     private float leftDistance;
     private float rightDistance;
+    private Transform myTransform;
 
     private void Move()
     {
@@ -42,6 +43,7 @@ public class IAInLine : MonoBehaviour {
         else
         {
             bReturnMove = true;
+            myTransform.localScale = new Vector3(-myTransform.localScale.x, myTransform.localScale.y, myTransform.localScale.z);
         }
        
     }
@@ -71,12 +73,14 @@ public class IAInLine : MonoBehaviour {
         else
         {
             bReturnMove = false;
+            myTransform.localScale = new Vector3(-myTransform.localScale.x, myTransform.localScale.y, myTransform.localScale.z);
         }
         
     }
 
     // Use this for initialization
     void Start() {
+        myTransform = this.transform;
         dir = new Vector3(0, 0, 0);
         bReturnMove = false;
 
@@ -101,7 +105,9 @@ public class IAInLine : MonoBehaviour {
         }
         else
         {
+            
             ReturnMove();
+           // myTransform.localScale = new Vector3(-myTransform.localScale.x, myTransform.localScale.y, myTransform.localScale.z);
         }
     }
     /*

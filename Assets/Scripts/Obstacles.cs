@@ -11,7 +11,10 @@ public class Obstacles : MonoBehaviour {
 
     [SerializeField] bool isProjectile = false;
     float deltaTime;
+    [SerializeField] private bool delta = false ;
 
+    public float m_SpeedBoost = 0f;
+    public float m_SpeedBoostDuration = 0f;
    
     // Use this for initialization
     void Start () {
@@ -21,23 +24,37 @@ public class Obstacles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+    void FixedUpdate()
+    {
         if (!GameManager.instance.isPause)
         {
             transform.Rotate(Vector3.forward * RotationSpeed);
             transform.Translate(new Vector3(MoveX, MoveY));
         }
+
+        if (!delta)
+        {
+            transform.Rotate(Vector3.forward * RotationSpeed);
+            transform.Translate(new Vector3(MoveX, MoveY));
+            
+        }
+        else
+        {
+            transform.Rotate(Vector3.forward * RotationSpeed * Time.deltaTime);
+            transform.Translate(new Vector3(MoveX * Time.deltaTime, MoveY * Time.deltaTime));
+        }
+
         if (IsProjectile)
         {
-
-
             deltaTime += Time.deltaTime;
-            if(deltaTime > LifeTime)
+            if (deltaTime > LifeTime)
             {
-                Debug.Log("COUCOU");
                 Destroy(gameObject);
             }
         }
-	}
+    }
 
     public float GetScaleAmountToModify()
     {

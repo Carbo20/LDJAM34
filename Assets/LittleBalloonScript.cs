@@ -17,6 +17,10 @@ public class LittleBalloonScript : MonoBehaviour {
 	void Start () {
         isAttached = false;
         initPos = transform.position;
+        if (PlayerPrefs.GetInt("Level" + levelID, 0) == 1)
+        {
+            Validate();
+        }
 	}
 	
 	// Update is called once per frame
@@ -44,5 +48,6 @@ public class LittleBalloonScript : MonoBehaviour {
     {
         Destroy(Backdoor);
         Destroy(gameObject);
+        PlayerPrefs.SetInt("Level" + levelID, 1);
     }
 }

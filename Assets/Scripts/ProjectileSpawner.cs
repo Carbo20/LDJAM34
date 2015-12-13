@@ -21,6 +21,7 @@ public class ProjectileSpawner : MonoBehaviour {
         projectile.GetComponent<Obstacles>().MoveX = speedX;
         projectile.GetComponent<Obstacles>().MoveY = speedY;
         projectile.GetComponent<Obstacles>().LifeTime = lifeTime;
+        projectile.transform.position = transform.position;
 	}
 	
 	// Update is called once per frame

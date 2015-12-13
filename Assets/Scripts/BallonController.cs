@@ -80,7 +80,7 @@ public class BallonController : MonoBehaviour {
         else
             isMoving = false;*/
 
-        if (canMove && (Input.GetMouseButton(0) || Input.GetKey(KeyCode.LeftArrow)))
+        if (!GameManager.instance.isPause && canMove && (Input.GetMouseButton(0) || Input.GetKey(KeyCode.LeftArrow)))
             transform.Rotate(Vector3.forward, rotspeed);
         if (canMove && (Input.GetMouseButton(1)|| Input.GetKey(KeyCode.RightArrow)))
             transform.Rotate(Vector3.forward, -rotspeed);

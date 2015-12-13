@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public enum Niveaux
 {
@@ -15,7 +15,11 @@ public class GameManager : MonoBehaviour {
     private int numberOfBalloonSaved = 0;
     [SerializeField] private int maxNumberOfChildBalloon = 5;
     public float waterSpeedModification = 2f;
-    private bool isPause;
+    public bool isPause;
+
+    //[SerializeField]
+    SpriteRenderer spriteOpaquePause;
+    private Image sprite;
 
     static public bool isActive
     {
@@ -47,19 +51,37 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-         isPause = false;
+
+        isPause = false;
+     
+        sprite = GameObject.FindGameObjectWithTag("UI").GetComponent<Image>();
+        sprite.enabled = false;
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(2))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2))
         {
             isPause = !isPause;
-         if(isPause)
+            if (isPause)
+            {
                 Time.timeScale = 0;
+                // sprite.color = new Color(0f, 0f, 0f, .5f); //5 is about 50 % transparent
+                sprite.enabled = true;
+            }
             else
+            {
                 Time.timeScale = 1;
+                //    spriteOpaquePause.color = new Color(1f, 1f, 1f, .5f);
+                sprite.enabled = false;
+            }
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
 
     public void OneMoreChildBalloonSaved()

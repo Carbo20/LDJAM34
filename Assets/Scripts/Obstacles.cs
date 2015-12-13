@@ -21,8 +21,11 @@ public class Obstacles : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(Vector3.forward * RotationSpeed);
-        transform.Translate(new Vector3(MoveX, MoveY));
+        if (!GameManager.instance.isPause)
+        {
+            transform.Rotate(Vector3.forward * RotationSpeed);
+            transform.Translate(new Vector3(MoveX, MoveY));
+        }
         if (IsProjectile)
         {
 

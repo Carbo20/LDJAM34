@@ -14,14 +14,12 @@ public class ProjectileSpawner : MonoBehaviour {
     private GameObject projectile;
 
     private float deltaTime;
+    private Transform myTransform;
 
 	// Use this for initialization
 	void Start () {
         deltaTime = 0f;
-        projectile.GetComponent<Obstacles>().MoveX = speedX;
-        projectile.GetComponent<Obstacles>().MoveY = speedY;
-        projectile.GetComponent<Obstacles>().LifeTime = lifeTime;
-        projectile.transform.position = transform.position;
+        myTransform = this.transform;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +33,12 @@ public class ProjectileSpawner : MonoBehaviour {
         {
             GameObject instance = Instantiate(projectile);
             instance.GetComponent<Obstacles>().IsProjectile = true;
-            instance.GetComponent<Obstacles>().transform.position = transform.position;
+            instance.GetComponent<Obstacles>().MoveX = speedX;
+            instance.GetComponent<Obstacles>().MoveY = speedY;
+            instance.GetComponent<Obstacles>().LifeTime = lifeTime;
+            //instance.GetComponent<Obstacles>().transform.position = transform.position;
+            instance.GetComponent<Obstacles>().transform.position = new Vector3(myTransform.position.x, myTransform.position.y, myTransform.position.z + 1);
+
             deltaTime = 0f;
         }
         deltaTime += Time.deltaTime;

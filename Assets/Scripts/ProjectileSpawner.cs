@@ -35,6 +35,7 @@ public class ProjectileSpawner : MonoBehaviour {
         {
             GameObject instance = Instantiate(projectile);
             instance.GetComponent<Obstacles>().IsProjectile = true;
+            instance.GetComponent<Obstacles>().transform.position = transform.position;
             deltaTime = 0f;
         }
         deltaTime += Time.deltaTime;

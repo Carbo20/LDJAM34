@@ -9,6 +9,8 @@ public class LignePunaiseScript : MonoBehaviour {
     private int nbPin;
     [SerializeField]
     private GameObject pin;
+    [SerializeField]
+    private bool randomColor;
     
 
 	// Use this for initialization
@@ -17,6 +19,8 @@ public class LignePunaiseScript : MonoBehaviour {
         {
             GameObject gao = Instantiate(pin);
             gao.transform.position = Vector2.Lerp(start.position, end.position, (float)i /  (float)nbPin);
+            if(randomColor)
+                gao.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         }
 	}
 

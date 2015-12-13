@@ -6,6 +6,12 @@ using System.Collections.Generic;
 public class BallonController : MonoBehaviour {
 
     private bool isMoving, canMove, isSlow, isDead;
+
+    public bool IsDead
+    {
+        get { return isDead; }
+        set { isDead = value; }
+    }
     [SerializeField]
     private float speed, slowMod, rotspeed, moveCd, growSpeed;
     private float elapsedTime, moveOnCd;

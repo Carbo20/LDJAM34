@@ -49,5 +49,6 @@ public class LittleBalloonScript : MonoBehaviour {
         Destroy(Backdoor);
         Destroy(gameObject);
         PlayerPrefs.SetInt("Level" + levelID, 1);
+        GameManager.instance.OneMoreChildBalloonSaved();
     }
 }

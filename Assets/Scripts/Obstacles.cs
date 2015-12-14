@@ -13,6 +13,13 @@ public class Obstacles : MonoBehaviour {
     float deltaTime;
     [SerializeField] private bool delta = true;
 
+    [SerializeField]
+    private bool canon;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip bouletExplosion;
+    private bool soundHasBeenPlayed;
+
     public float m_SpeedBoost = 0f;
     public float m_SpeedBoostDuration = 0f;
    
@@ -20,6 +27,13 @@ public class Obstacles : MonoBehaviour {
     void Start () {
         myTransform = this.transform;
         deltaTime = 0f;
+
+        if (canon)
+        {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.clip = bouletExplosion;
+            soundHasBeenPlayed = false;
+        }
 	}
 	
 	// Update is called once per frame
@@ -46,7 +60,21 @@ public class Obstacles : MonoBehaviour {
             transform.Translate(new Vector3(MoveX * Time.deltaTime, MoveY * Time.deltaTime));
         }
 
-        if (IsProjectile)
+        if (canon)
+        {
+            deltaTime += Time.deltaTime;
+            if (deltaTime > LifeTime && !soundHasBeenPlayed)
+            {
+                audioSource.Play();
+                soundHasBeenPlayed = true;
+            }
+            if (deltaTime > LifeTime && soundHasBeenPlayed && !audioSource.isPlaying)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+        else if (IsProjectile)
         {
             deltaTime += Time.deltaTime;
             if (deltaTime > LifeTime)

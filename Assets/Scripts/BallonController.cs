@@ -176,7 +176,7 @@ public class BallonController : MonoBehaviour {
             {
                 Debug.Log("vitesse hub :" + speed);
                 GameManager.instance.niveau = Niveaux.HUB_CENTRAL;
-                speed = oldSpeed; // retour à une vitesse normale
+                speed = 5; // retour à une vitesse normale
                 oldGrowSpeed = growSpeed;
                 growSpeed = 0f;
                 transform.localScale = new Vector3(0.5f, 0.5f, 0);
@@ -253,7 +253,6 @@ public class BallonController : MonoBehaviour {
         }
         else if (c.gameObject.tag == "Sun")
         {
-            Debug.Log("sun");
             winImage.enabled = true;
             Die();
         }

@@ -8,6 +8,8 @@ public class BallonController : MonoBehaviour {
 
     [SerializeField]
     private AudioClip balloonExplode, balloonDeflate, stageClear;
+    [SerializeField]
+    private GameObject box;
     private AudioSource audioSource;
 
     private bool isMoving, canMove, isSlow, isDead;
@@ -37,6 +39,7 @@ public class BallonController : MonoBehaviour {
         winImage.enabled = false;
         PlayerPrefs.SetInt("Level0", 0);
         audioSource = GetComponent<AudioSource>();
+        Instantiate(box);
         isMoving = false;
         canMove = false;
         isSlow = false;
@@ -65,7 +68,8 @@ public class BallonController : MonoBehaviour {
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
         transform.localScale = new Vector3(.5f, .5f, 0);
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(1.14f, -18.92f, 0);
+        Instantiate(box);
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
         anim.SetTrigger("Respawn");
         moveOnCd = 0;
@@ -117,7 +121,7 @@ public class BallonController : MonoBehaviour {
             Grow();
             Move();
         }
-
+        
         if (!isDead && !canMove)
         {
             if (moveOnCd < moveCd)

@@ -16,10 +16,13 @@ public class ProjectileSpawner : MonoBehaviour {
     private float deltaTime;
     private Transform myTransform;
 
+    private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start () {
         deltaTime = 0f;
         myTransform = this.transform;
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -38,7 +41,8 @@ public class ProjectileSpawner : MonoBehaviour {
             instance.GetComponent<Obstacles>().LifeTime = lifeTime;
             //instance.GetComponent<Obstacles>().transform.position = transform.position;
             instance.GetComponent<Obstacles>().transform.position = new Vector3(myTransform.position.x, myTransform.position.y, myTransform.position.z + 1);
-
+            
+            audioSource.Play();
             deltaTime = 0f;
         }
         deltaTime += Time.deltaTime;

@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 public class BallonController : MonoBehaviour {
 
+    [SerializeField]
+    private AudioClip balloonExplode, balloonDeflate;
+    private AudioSource audioSource;
+
     private bool isMoving, canMove, isSlow, isDead;
 
     public bool IsDead
@@ -20,11 +24,15 @@ public class BallonController : MonoBehaviour {
     private float oldSpeed = 0f;
     private float oldGrowSpeed = 0f;
     private List<GameObject> enableList;
+
     private float speedBonus = 0f;
     private float speedBonusDuration = 0f;
 
+
 	// Use this for initialization
 	void Start () {
+        PlayerPrefs.SetInt("Level0", 0);
+        audioSource = GetComponent<AudioSource>();
         isMoving = false;
         canMove = false;
         isSlow = false;
@@ -146,6 +154,8 @@ public class BallonController : MonoBehaviour {
             ModifyScale(c.gameObject.GetComponent<Obstacles>().GetScaleAmountToModify());
             c.gameObject.SetActive(false);
             enableList.Add(c.gameObject);
+            audioSource.clip = balloonDeflate;
+            audioSource.Play();
         }
         else if (c.gameObject.tag == "ModifySpeed")
         {
@@ -251,6 +261,8 @@ public class BallonController : MonoBehaviour {
         anim.SetTrigger("Die");
         canMove = false;
         GetComponent<TrailRenderer>().enabled = false;
+        audioSource.clip = balloonExplode;
+        audioSource.Play();
     }
 
     #region Ajout-luc

@@ -10,11 +10,16 @@ public class LittleBalloonScript : MonoBehaviour {
     private GameObject Player, Backdoor;
     [SerializeField]
     private float attachRange;
+    [SerializeField]
+    private AudioClip LevelFinish, Rescue;
+    private AudioSource audioSource;
 
     private Vector3 initPos;
 
 	// Use this for initialization
 	void Start () {
+        audioSource = GetComponent<AudioSource>();
+
         isAttached = false;
         initPos = transform.position;
         if (PlayerPrefs.GetInt("Level" + levelID, 0) == 1)
@@ -33,6 +38,8 @@ public class LittleBalloonScript : MonoBehaviour {
             transform.position = new Vector3(.5f + Player.transform.position.x, 2.5f + Player.transform.position.y, 0);
             transform.localRotation = Quaternion.identity;
             Backdoor.SetActive(false);
+            audioSource.clip = Rescue;
+            audioSource.Play();
         }
 
         if (isAttached && Player.GetComponent<BallonController>().IsDead)
@@ -50,5 +57,7 @@ public class LittleBalloonScript : MonoBehaviour {
         Destroy(gameObject);
         PlayerPrefs.SetInt("Level" + levelID, 1);
         GameManager.instance.OneMoreChildBalloonSaved();
+        audioSource.clip = LevelFinish;
+        audioSource.Play();
     }
 }

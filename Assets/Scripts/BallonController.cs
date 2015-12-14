@@ -41,6 +41,7 @@ public class BallonController : MonoBehaviour {
         anim = GetComponent<Animator>();
         babyBalloon = false;
         elapsedTime = 0;
+        speed = 5;
         enableList = new List<GameObject>();
         GetComponent<TrailRenderer>().enabled = true;
         GetComponent<TrailRenderer>().Clear();

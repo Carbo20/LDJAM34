@@ -19,6 +19,7 @@ public class Lighting : MonoBehaviour {
     private float timeBetweenAnimation;
     private float ticEnergieChange;
     private SpriteRenderer mySpriteRenderer;
+    private AudioSource myAudioSource;
 
 
     private float timeChangeEnergie;
@@ -27,6 +28,7 @@ public class Lighting : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        myAudioSource = GetComponent<AudioSource>();
         myTransform = this.transform;
         ticActualDuration = 0f;
         timeBetweenAnimation = 0f;
@@ -54,7 +56,8 @@ public class Lighting : MonoBehaviour {
             lethal = true;
             gameObject.tag = "Kill";
             mySpriteRenderer.enabled = true;
-
+            if (!myAudioSource.isPlaying)
+                myAudioSource.Play();
             // Animation
             if (timeBetweenAnimation > 0)
                 timeBetweenAnimation -= Time.deltaTime;

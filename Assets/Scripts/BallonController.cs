@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class BallonController : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class BallonController : MonoBehaviour {
     }
     [SerializeField]
     private float speed, slowMod, rotspeed, moveCd, growSpeed;
+    [SerializeField]
+    private Image winImage;
     private float elapsedTime, moveOnCd;
     private Animator anim;
     private bool babyBalloon; // true if a baby balloon (and not baboon, that would be akward) is following us
@@ -31,6 +34,7 @@ public class BallonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        winImage.enabled = false;
         PlayerPrefs.SetInt("Level0", 0);
         audioSource = GetComponent<AudioSource>();
         isMoving = false;
@@ -56,12 +60,13 @@ public class BallonController : MonoBehaviour {
 
     private void init()
     {
+        winImage.enabled = false;
         GetComponent<TrailRenderer>().enabled = true;
         GetComponent<TrailRenderer>().Clear();
         GetComponent<TrailRenderer>().time = 0.15f;
         transform.localScale = new Vector3(.5f, .5f, 0);
         transform.position = new Vector3(0, 0, 0);
-        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90));
         anim.SetTrigger("Respawn");
         moveOnCd = 0;
         isDead = false;
@@ -245,6 +250,12 @@ public class BallonController : MonoBehaviour {
                 growSpeed = oldGrowSpeed;
                 Camera.main.backgroundColor = hexToColor("212E5105");/// 16065605 212E5105
             }
+        }
+        else if (c.gameObject.tag == "Sun")
+        {
+            Debug.Log("sun");
+            winImage.enabled = true;
+            Die();
         }
         
     }

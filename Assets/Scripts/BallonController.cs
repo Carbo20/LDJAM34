@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BallonController : MonoBehaviour {
 
     [SerializeField]
-    private AudioClip balloonExplode, balloonDeflate;
+    private AudioClip balloonExplode, balloonDeflate, stageClear;
     private AudioSource audioSource;
 
     private bool isMoving, canMove, isSlow, isDead;
@@ -276,6 +276,20 @@ public class BallonController : MonoBehaviour {
         audioSource.Play();
     }
 
+    private void ResetAllDisabledGameObjects()
+    {
+        foreach (GameObject GO in enableList)
+        {
+            GO.SetActive(true);
+        }
+    }
+
+    public void PlayStageClearSound()
+    {
+        audioSource.clip = stageClear;
+        audioSource.Play();
+    }
+
     #region Ajout-luc
     public void ModifyScale(float amount)
     {
@@ -300,12 +314,6 @@ public class BallonController : MonoBehaviour {
          return new Color32(r,g,b,a);
      }
 
-     private void ResetAllDisabledGameObjects()
-     {
-         foreach (GameObject GO in enableList)
-         {
-             GO.SetActive(true);
-         }
-     }
+     
     #endregion
 }

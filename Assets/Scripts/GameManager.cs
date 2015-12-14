@@ -86,6 +86,9 @@ public class GameManager : MonoBehaviour {
 
     public void OneMoreChildBalloonSaved()
     {
+        BallonController bC = GameObject.Find("Balloon").GetComponent<BallonController>();
+        bC.PlayStageClearSound();
+
         numberOfBalloonSaved++;
         if (numberOfBalloonSaved == maxNumberOfChildBalloon)
             OpenSesame();

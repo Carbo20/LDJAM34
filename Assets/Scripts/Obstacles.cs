@@ -11,7 +11,7 @@ public class Obstacles : MonoBehaviour {
 
     [SerializeField] bool isProjectile = false;
     float deltaTime;
-    [SerializeField] private bool delta = false ;
+    [SerializeField] private bool delta = true;
 
     public float m_SpeedBoost = 0f;
     public float m_SpeedBoostDuration = 0f;

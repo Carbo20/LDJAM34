@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     static GameManager _instance;
 
     public Niveaux niveau = Niveaux.HUB_CENTRAL;
-    private int numberOfBalloonSaved = 0;
+    private int numberOfBalloonSaved;
     [SerializeField] private int maxNumberOfChildBalloon = 5;
     public float waterSpeedModification = 2f;
     public bool isPause;
@@ -66,12 +66,18 @@ public class GameManager : MonoBehaviour {
 
         spritePause = GameObject.FindGameObjectWithTag("UI").GetComponent<Image>();
         spritePause.enabled = false;
-
+        numberOfBalloonSaved = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            if (PlayerPrefs.GetInt("Level" + i, 0) == 1)
+                numberOfBalloonSaved++;
+        }
        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(2))
         {
             isPause = !isPause;
@@ -89,6 +95,13 @@ public class GameManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        numberOfBalloonSaved = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            if (PlayerPrefs.GetInt("Level" + i, 0) == 1)
+                numberOfBalloonSaved++;
         }
 
     }

@@ -79,6 +79,9 @@ public class BallonController : MonoBehaviour {
             growSpeed = 0f;
         }
         ResetAllDisabledGameObjects();
+
+        speedBonus = 0f;
+        speedBonusDuration = 0f;
     }
 
     void Update()

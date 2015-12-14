@@ -67,8 +67,12 @@ public class Obstacles : MonoBehaviour {
             {
                 audioSource.Play();
                 soundHasBeenPlayed = true;
+                deltaTime = 0;
+                LifeTime = bouletExplosion.length;
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<CircleCollider2D>().enabled = false;
             }
-            if (deltaTime > LifeTime && soundHasBeenPlayed && !audioSource.isPlaying)
+            if (deltaTime > LifeTime && soundHasBeenPlayed)
             {
                 Destroy(gameObject);
             }

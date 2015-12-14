@@ -26,7 +26,6 @@ public class OiseauSoundManager : MonoBehaviour {
 
         if (elapsedTime >= timeForNextSound)
         {
-            Debug.Log("Bird scream");
             audioSource.Play();
             SetNewTime();
         }

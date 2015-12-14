@@ -27,8 +27,13 @@ public class ProjectileSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        GenerateProjectile();
+      //  GenerateProjectile();
 	}
+
+    void FixedUpdate()
+    {
+        GenerateProjectile();
+    }
 
     private void GenerateProjectile()
     {

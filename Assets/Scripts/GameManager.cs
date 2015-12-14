@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public enum Niveaux
 {
-    HUB_CENTRAL, EAU, FACILE, BULLET_HELL, HARDCORE, PUZZLE, SOLEIL
+    HUB_CENTRAL, EAU, FACILE, BULLET_HELL, HARDCORE, PUZZLE, SOLEIL, SIZE
 }
 
 public class GameManager : MonoBehaviour {
@@ -16,10 +16,14 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private int maxNumberOfChildBalloon = 5;
     public float waterSpeedModification = 2f;
     public bool isPause;
+    private bool isUnlockedDoor;
+    private Image spritePause;
 
-    //[SerializeField]
-    SpriteRenderer spriteOpaquePause;
-    private Image sprite;
+ 
+    GameObject starGateOpened; 
+    GameObject starGateClosed;
+
+    GameObject []lightObject;
 
     static public bool isActive
     {
@@ -27,6 +31,11 @@ public class GameManager : MonoBehaviour {
         {
             return _instance != null;
         }
+    }
+
+    public int NbBalloonsSaved()
+    {
+        return numberOfBalloonSaved;
     }
 
     static public GameManager instance
@@ -53,10 +62,12 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 
         isPause = false;
-     
-        sprite = GameObject.FindGameObjectWithTag("UI").GetComponent<Image>();
-        sprite.enabled = false;
-        
+        isUnlockedDoor = false;
+
+        spritePause = GameObject.FindGameObjectWithTag("UI").GetComponent<Image>();
+        spritePause.enabled = false;
+
+       
     }
 	
 	// Update is called once per frame
@@ -67,14 +78,12 @@ public class GameManager : MonoBehaviour {
             if (isPause)
             {
                 Time.timeScale = 0;
-                // sprite.color = new Color(0f, 0f, 0f, .5f); //5 is about 50 % transparent
-                sprite.enabled = true;
+                spritePause.enabled = true;
             }
             else
             {
                 Time.timeScale = 1;
-                //    spriteOpaquePause.color = new Color(1f, 1f, 1f, .5f);
-                sprite.enabled = false;
+                spritePause.enabled = false;
             }
         }
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -84,19 +93,22 @@ public class GameManager : MonoBehaviour {
 
     }
 
+  
     public void OneMoreChildBalloonSaved()
     {
+
         BallonController bC = GameObject.Find("Balloon").GetComponent<BallonController>();
         bC.PlayStageClearSound();
 
+
         numberOfBalloonSaved++;
-        if (numberOfBalloonSaved == maxNumberOfChildBalloon)
-            OpenSesame();
+   
     }
 
     // Open the last door to paradise
     private void OpenSesame()
     {
-
+        
+       
     }
 }

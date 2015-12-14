@@ -22,6 +22,7 @@ public class LittleBalloonScript : MonoBehaviour {
 
         isAttached = false;
         initPos = transform.position;
+
         if (PlayerPrefs.GetInt("Level" + levelID, 0) == 1)
         {
             Validate();
@@ -56,7 +57,9 @@ public class LittleBalloonScript : MonoBehaviour {
         Destroy(Backdoor);
         Destroy(gameObject);
         PlayerPrefs.SetInt("Level" + levelID, 1);
+       
         GameManager.instance.OneMoreChildBalloonSaved();
+        
         audioSource.clip = LevelFinish;
         audioSource.Play();
     }

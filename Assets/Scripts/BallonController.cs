@@ -36,7 +36,7 @@ public class BallonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Cursor.visible = false;
+       // Cursor.visible = false;
         winImage.enabled = false;
         audioSource = GetComponent<AudioSource>();
         Instantiate(box);
@@ -139,6 +139,8 @@ public class BallonController : MonoBehaviour {
         if (canMove && !isDead)
             anim.SetTrigger("Respawn");
 
+
+
 	}
 
     private void Move()
@@ -195,6 +197,8 @@ public class BallonController : MonoBehaviour {
                     littleBalloons[i].Validate();
                 }
                 ResetAllDisabledGameObjects();
+                speedBonus = 0f;
+                speedBonusDuration = 0f;
             }
         }
         else if (c.gameObject.tag == "NiveauEau")

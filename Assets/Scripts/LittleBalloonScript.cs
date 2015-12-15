@@ -50,6 +50,21 @@ public class LittleBalloonScript : MonoBehaviour {
             transform.position = initPos;
             Backdoor.SetActive(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                PlayerPrefs.SetInt("Level" + i, 1);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                PlayerPrefs.SetInt("Level" + i, 0);
+            }
+        }
 	}
 
     public void Validate()
@@ -57,10 +72,7 @@ public class LittleBalloonScript : MonoBehaviour {
         Destroy(Backdoor);
         Destroy(gameObject);
         PlayerPrefs.SetInt("Level" + levelID, 1);
-       
+
         GameManager.instance.OneMoreChildBalloonSaved();
-        
-        audioSource.clip = LevelFinish;
-        audioSource.Play();
     }
 }

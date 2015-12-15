@@ -23,19 +23,20 @@ public class PortailManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-	if(!isOpened && GameManager.instance.NbBalloonsSaved() == 5)
+    void Update()
+    {
+        if (!isOpened && GameManager.instance.NbBalloonsSaved() == 5)
         {
             isOpened = true;
             GetComponent<SpriteRenderer>().sprite = spritePortailFerme;
             GetComponent<BoxCollider2D>().enabled = false;
         }
-    for(int i=0; i<5; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (PlayerPrefs.GetInt("Level" + i, 0) == 1 && !lightObject[i].activeSelf)
             {
                 lightObject[i].SetActive(true);
             }
         }
-	}
+    }
 }

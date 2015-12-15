@@ -36,6 +36,7 @@ public class BallonController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Cursor.visible = false;
         winImage.enabled = false;
         audioSource = GetComponent<AudioSource>();
         Instantiate(box);

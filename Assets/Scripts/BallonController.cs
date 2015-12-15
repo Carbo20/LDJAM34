@@ -90,13 +90,6 @@ public class BallonController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                PlayerPrefs.SetInt("Level" + i, 0);
-            }
-        }
         if (speedBonusDuration > 0)
             speedBonusDuration -= Time.deltaTime;
         else
